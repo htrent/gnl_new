@@ -15,18 +15,15 @@ int main(int argc, char **argv)
 	int fd;
 	int fd1;
 	char *str;
-	int get;
 
 	(void)argc;
 	fd = open(argv[1], O_RDONLY);
 	fd1 = open(argv[2], O_RDONLY);
-
-	while ((get = get_next_line(fd1, &str)) > 0)
-	{
-		getchar();
-		printf(KRED"%d \'%s\'\n"KNRM, get, str);
-		printf(KGRN"%d \'%s\'\n"KNRM, get_next_line(fd, &str), str);
-	}
+    str = NULL;
+    printf(KRED"%d \'%s\'\n"KNRM, get_next_line(fd, &str), str);
+    free(str);
+    printf(KGRN"%d \'%s\'\n"KNRM, get_next_line(fd1, &str), str);
+    free(str);
 	return (0);
 }
 
